@@ -13,6 +13,14 @@ function createCell(id) {
     return { id, empty, content };
 }
 
+function resetDOM() {
+    buttons.forEach((button) => {
+        button.textContent = '';
+    });
+
+    endGameScreen.setAttribute('style', 'display: none');
+}
+
 function resetGame() {
     game = true;
     player = 0;
@@ -24,11 +32,7 @@ function resetGame() {
         }
     }
 
-    buttons.forEach((button) => {
-        button.textContent = '';
-    });
-
-    endGameScreen.setAttribute('style', 'display: none');
+    resetDOM();
 }
 
 function checkWin() {
@@ -108,7 +112,11 @@ function checkGame() {
 function drawGame() {
     resultText.textContent = "The game ended in a draw";
     endGameScreen.setAttribute('style', 'display: flex');
+}
 
+function drawWin(opt) {
+    resultText.textContent = "The winner of the game was " + opt;
+    endGameScreen.setAttribute('style', 'display: flex');
 }
 
 function endGame() {
@@ -120,8 +128,7 @@ function endGame() {
         opt = 'O';
     }
 
-    resultText.textContent = "The winner of the game was " + opt;
-    endGameScreen.setAttribute('style', 'display: flex');
+    drawWin(opt);
 }
 
 let id = 1;
